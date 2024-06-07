@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
 
         await new Promise(resolve => setTimeout(resolve, 1000));
 
+        
         await page.goto('http://bianca.com', {waitUntil: 'networkidle2', timeout: 100000});
     
         await page.waitForSelector('body');
