@@ -16,15 +16,18 @@ export async function GET(req: NextRequest) {
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
             '--disable-gpu',
+            '--single-process',
+            '--no-zygote',
             '--window-size=1920x1080'
           ],
+          ignoreHTTPSErrors: true,
         });
         const page = await browser.newPage();
 
         await new Promise(resolve => setTimeout(resolve, 1000));
 
 
-        await page.goto('https://google.com', {waitUntil: 'networkidle2', timeout: 100000});
+        await page.goto('http://bianca.com', {waitUntil: 'networkidle2', timeout: 100000});
     
         await page.waitForSelector('body');
     
