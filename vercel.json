@@ -1,0 +1,9 @@
+{
+  "builds": [
+    {
+      "src": "app/api/**/*.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "installCommand": "npm install && npx puppeteer install"
+}
