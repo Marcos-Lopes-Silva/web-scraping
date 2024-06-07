@@ -5,6 +5,7 @@ export async function GET(req: NextRequest) {
     try {
         const browser = await puppeteer.launch({
           headless: true,
+          executablePath: puppeteer.executablePath(),
           args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -14,10 +15,10 @@ export async function GET(req: NextRequest) {
           ],
         });
         const page = await browser.newPage();
-        
+
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        await page.goto('http://bianca.com', {waitUntil: 'networkidle2', timeout: 10000});
+        await page.goto('http://bianca.com', {waitUntil: 'networkidle2', timeout: 100000});
     
         await page.waitForSelector('body');
     
