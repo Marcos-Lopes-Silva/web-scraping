@@ -30,12 +30,20 @@ export async function GET(req: NextRequest) {
         await page.goto('http://bianca.com', {waitUntil: 'networkidle2', timeout: 100000});
     
         await page.waitForSelector('body');
-    
+        
+        const title = await page.title();
+        const body = await page.evaluate(() => {
+            return document.body.innerHTML;
+          });
         const content = await page.content();
-    
+        
         await browser.close();
-    
-        return NextResponse.json({ content });
+        const data = {
+            content,
+            title,
+            body
+        }
+        return NextResponse.json({ data });
       } catch (error) {
         console.error(error);
         return NextResponse.json({ error: 'Erro ao fazer scraping' }, { status: 500 })
