@@ -2,7 +2,7 @@ import Chromium from "@sparticuz/chromium-min";
 import { NextResponse, NextRequest } from "next/server";
 import puppeteer from "puppeteer-core";
 
-const chromiumPack = 'https://github.com/Sparticuz/chromium/releases/download/v121.0.0/chromium-v121.0.0-pack.tar'
+const chromiumPack = 'https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar'
 
 export async function GET(req: NextRequest) {
   
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
         await new Promise(resolve => setTimeout(resolve, 1000));
 
 
-        await page.goto('http://bianca.com', {waitUntil: 'networkidle2', timeout: 100000});
+        await page.goto('https://google.com', {waitUntil: 'networkidle2', timeout: 100000});
     
         await page.waitForSelector('body');
     
